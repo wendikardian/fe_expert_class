@@ -5,6 +5,14 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  entry: {
+    app: path.resolve(__dirname, 'src/index.js'),
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
   module: {
     rules: [
       {
@@ -19,11 +27,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/,
-        use: [
-          'file-loader',
-        ],
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
+      // {
+      //   test: /\.(png|svg|jpg|jpeg|gif)$/,
+      //   use: [
+      //     'file-loader',
+      //   ],
+      // },
     ],
   },
   plugins: [
